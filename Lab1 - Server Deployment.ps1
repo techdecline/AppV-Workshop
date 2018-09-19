@@ -19,6 +19,9 @@ Add-ADGroupMember -Identity App-V-Users -Members Alice
 # Reboot to update Group Memberships
 Restart-Computer
 
+# Install IIS Management Console
+Install-WindowsFeature Web-Mgmt-Console
+
 # Install Management Server and Database
 Start-Process -FilePath "\\appv-server1\Install\AppVServer\appv_server_setup.exe" -ArgumentList '/QUIET /MANAGEMENT_SERVER /MANAGEMENT_ADMINACCOUNT="training\App-V-Admins" /MANAGEMENT_WEBSITE_NAME="Microsoft AppV Management Service" /MANAGEMENT_WEBSITE_PORT="8080" /DB_PREDEPLOY_MANAGEMENT /MANAGEMENT_DB_CUSTOM_SQLINSTANCE="AppV" /MANAGEMENT_DB_NAME="AppVManagement" /ACCEPTEULA /INSTALLDIR="C:\Program Files\Microsoft Application Virtualization Server"'
 
