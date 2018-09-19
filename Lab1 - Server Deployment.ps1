@@ -34,6 +34,7 @@ invoke-command -computername appv-server2 -scriptblock {
 }
 Copy-Item "\\appv-server1\Install\AppVServer\appv_server_setup.exe" -Destination \\appv-server2\c$\Windows\Temp
 Invoke-Command -ComputerName appv-server2 -ScriptBlock {
+    Install-WindowsFeature Web-Mgmt-Console
     Start-Process -FilePath "C:\Windows\Temp\appv_server_setup.exe" -ArgumentList '/QUIET /ACCEPTEULA /PUBLISHING_SERVER /PUBLISHING_MGT_SERVER="http://Appv-Server1.training.lab:8080" /PUBLISHING_WEBSITE_NAME="Microsoft AppV Publishing Service" /PUBLISHING_WEBSITE_PORT="8081"'
     Wait-Process appv_server_setup -Timeout 300
 }
