@@ -1,0 +1,1 @@
+﻿Add-LocalGroupMember (get-localgroup -SID S-1-5-32-544) -Member Training\alice
