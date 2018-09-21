@@ -1,0 +1,1 @@
+﻿New-NetFirewallRule -DisplayName Notepadpp -Action Allow -Direction Outbound -Name Notepadpp -Program "%ProgramFiles(x86)%\Notepad++\Notepad++.exe" -RemoteAddress 192.168.2.20-192.168.2.30 -RemotePort 8080 -Protocol TCP
