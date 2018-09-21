@@ -26,3 +26,18 @@ https://blogs.msdn.microsoft.com/sgern/2012/12/18/app-v-5-0run-as-virtual-featur
 
 ## RunVirtual using CommandLine
 https://support.microsoft.com/en-us/help/2848278/how-to-launch-processes-inside-the-app-v-5-0-virtualized-environment
+
+## Integrating VMware UEM with Microsoft App-V
+https://docs.vmware.com/en/VMware-User-Environment-Manager/9.1/com.vmware.user.environment.manager-adminguide/GUID-79D3087A-C86F-43CB-BFB3-AC2BABB54839.html
+
+## File redirection using Application Compatibility Fixes
+https://www.msigeek.com/4819/file-re-direction-using-correctfilepaths-shim-to-fix-broken-applications
+
+## Deploying Microsoft Office 2016 using App-V
+https://msitproblog.com/2015/11/14/how-to-create-an-office-2016-appv-package/
+
+## Deploying Adobe DC Products using App-V
+https://www.adobe.com/devnet-docs/acrobatetk/tools/AdminGuide/appvacrobatDC.html#creating-an-app-v-package
+
+## OSBuilder
+https://www.osdeploy.com/osbuilder/overview
