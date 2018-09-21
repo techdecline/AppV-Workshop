@@ -19,14 +19,22 @@ Add-ADGroupMember -Identity App-V-Users -Members Alice
 # Reboot to update Group Memberships
 Restart-Computer
 
+# Install IIS Management Console
+Install-WindowsFeature Web-Mgmt-Console
+
 # Install Management Server and Database
 Start-Process -FilePath "\\appv-server1\Install\AppVServer\appv_server_setup.exe" -ArgumentList '/QUIET /MANAGEMENT_SERVER /MANAGEMENT_ADMINACCOUNT="training\App-V-Admins" /MANAGEMENT_WEBSITE_NAME="Microsoft AppV Management Service" /MANAGEMENT_WEBSITE_PORT="8080" /DB_PREDEPLOY_MANAGEMENT /MANAGEMENT_DB_CUSTOM_SQLINSTANCE="AppV" /MANAGEMENT_DB_NAME="AppVManagement" /ACCEPTEULA /INSTALLDIR="C:\Program Files\Microsoft Application Virtualization Server"'
 
 Wait-Process appv_server_setup -Timeout 300
 
 # Install Publishing Server on Appv-Server2
+
+invoke-command -computername appv-server2 -scriptblock {
+    get-netfirewallrule -displaygroup "File and printer sharing" | enable-netfirewallrule
+}
 Copy-Item "\\appv-server1\Install\AppVServer\appv_server_setup.exe" -Destination \\appv-server2\c$\Windows\Temp
 Invoke-Command -ComputerName appv-server2 -ScriptBlock {
+    Install-WindowsFeature Web-Mgmt-Console
     Start-Process -FilePath "C:\Windows\Temp\appv_server_setup.exe" -ArgumentList '/QUIET /ACCEPTEULA /PUBLISHING_SERVER /PUBLISHING_MGT_SERVER="http://Appv-Server1.training.lab:8080" /PUBLISHING_WEBSITE_NAME="Microsoft AppV Publishing Service" /PUBLISHING_WEBSITE_PORT="8081"'
     Wait-Process appv_server_setup -Timeout 300
 }
